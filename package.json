@@ -1,0 +1,23 @@
+{
+    "name": "whatsapp-watchdog",
+    "version": "0.1.0",
+    "description": "A Node.js application for monitoring system processes and sending alerts via WhatsApp.",
+    "main": "./index.js",
+    "scripts": {
+      "start": "node ./index.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/MeshalAlamr/whatsapp-watchdog.git"
+    },
+    "author": "Meshal Alamr",
+    "license": "MIT",
+    "dependencies": {
+      "node-schedule": "^2.1.1",
+      "qrcode-terminal": "^0.12.0",
+      "whatsapp-web.js": "^1.23.0",
+      "puppeteer": "^13.0.0",
+      "dotenv": "^16.3.1"
+    }
+  }
+  
