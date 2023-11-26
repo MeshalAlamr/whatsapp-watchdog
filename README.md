@@ -1,5 +1,12 @@
 # WhatsApp Watchdog
 
+<p align="center">
+  <img src="https://github.com/MeshalAlamr/whatsapp-watchdog/assets/68873733/87b00b77-9038-4edd-b8c8-b49fb2e5ad76" alt="WhatsApp Watchdog" style="width:200px; border-radius:10px;">
+  <br>
+  <i>Image by DALL-E-3*</i>
+</p>
+
+
 WhatsApp Watchdog is a Node.js application to monitor Python scripts/services on Windows and send alerts via WhatsApp if the script/service is down. It regularly checks if a specified service (like a Python script) is running on the system and sends an alert through WhatsApp if the service is down. 
 
 
