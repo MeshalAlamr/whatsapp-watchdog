@@ -53,11 +53,11 @@ class WindowsSystemMonitor {
 }
 
 async function main() {
-  console.log('Starting WhatsApp service...')
+  console.log("Starting WhatsApp service...");
   const whatsAppService = new WhatsAppService();
   await whatsAppService.ready();
 
-  schedule.scheduleJob(config.schedule, () => {
+  function monitorService() {
     WindowsSystemMonitor.checkPythonService((err, stdout, stderr) => {
       if (err) {
         console.error("Error:", err);
@@ -70,13 +70,21 @@ async function main() {
       }
 
       if (!stdout.includes(config.serviceName)) {
-        console.log('Service is not running');
-        whatsAppService.sendMessage(config.chatId, config.serviceName + " is not running, please check!");
+        console.log("Service is not running");
+        whatsAppService.sendMessage(
+          config.chatId,
+          config.serviceName + " is not running, please check!"
+        );
+        console.log("Message sent to " + config.chatId);
       } else {
-        console.log('Service is running');
+        console.log("Service is running");
       }
     });
-  });
+  }
+
+  monitorService();
+
+  schedule.scheduleJob(config.schedule, monitorService);
 }
 
 main();
