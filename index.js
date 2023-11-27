@@ -26,8 +26,15 @@ class WhatsAppService {
       qrcode.generate(qr, { small: true });
     });
 
-    this.client.on("ready", () => {
-      console.log("WhatsApp Watchdog is ready!");
+  }
+
+  ready() {
+    return new Promise((resolve) => {
+      this.client.on('ready', () => {
+        console.log("WhatsApp Watchdog is ready!");
+        console.log("Starting to monitor " + config.serviceName + " and sending a message to " + config.chatId + " in case of failure...");
+        resolve();
+      });
     });
   }
 
@@ -45,9 +52,10 @@ class WindowsSystemMonitor {
   }
 }
 
-function main() {
+async function main() {
   console.log('Starting WhatsApp service...')
   const whatsAppService = new WhatsAppService();
+  await whatsAppService.ready();
 
   schedule.scheduleJob(config.schedule, () => {
     WindowsSystemMonitor.checkPythonService((err, stdout, stderr) => {
